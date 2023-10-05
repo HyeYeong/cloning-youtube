@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "the best way to watch videos",
   "scripts": {
-    "dev": "babel-node index.js",
+    "dev": "nodemon --exec babel-node index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.0",
     "@babel/node": "^7.22.19",
-    "@babel/preset-env": "^7.22.20"
+    "@babel/preset-env": "^7.22.20",
+    "nodemon": "^3.0.1"
   }
 }
