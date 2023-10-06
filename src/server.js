@@ -1,4 +1,6 @@
 import express from "express";
+import morgan from "morgan";
+
 const PORT = 4000;
 const app = express();
 
@@ -7,11 +9,8 @@ const handleHome = (req, res) => {
   return res.end();
 };
 
-const loggerMiddleWare = (req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  // 함수가 next 를 호출한다면 이 함수는 미들웨어라는걸 의미함
-  next();
-};
+//logger함수는 미들웨어를 리턴해준다.
+const logger = morgan("dev");
 
 const privateMiddleWare = (req, res, next) => {
   const url = req.url;
@@ -30,9 +29,9 @@ const handleLogin = (req, res) => {
   return res.send("login here");
 };
 
-app.use(loggerMiddleWare);
-app.use(privateMiddleWare);
 // 순서 중요!
+app.use(logger);
+
 app.get("/", handleHome);
 app.get("/login", handleLogin);
 app.get("/protected", handleProtected);
