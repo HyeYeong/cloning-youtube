@@ -6,9 +6,13 @@
 /join -> Join <br/>
 /login -> login<br/>
 /search -> search<br/>
-/users/edit -> edit user <br/>
-/users/delete -> delete user<br/>
-/videos/watch -> watch video<br/>
-/video/edit -> edit-video<br/>
-/video/comments -> comment on a video<br/>
-/video/comments/delete -> delete a comment of a video<br/>
+
+/users/:id -> see user's profile <br/>
+/users/logout -> log out<br/>
+/users/edit -> edit my profile <br/>
+/users/delete -> delete mu ptofile<br/>
+
+/videos/:id -> see video<br/>
+/video/:id/edit -> edit video(only writer)<br/>
+/video/:id/delete -> delete video(only writer)<br/>
+/videos/upload -> upload video<br/>
