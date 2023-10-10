@@ -7,14 +7,17 @@ export const Search = (req, res) => {
 };
 
 export const See = (req, res) => {
+  console.log(req.params);
   return res.send("watch video");
 };
 
 export const Edit = (req, res) => {
+  console.log(req.params);
   return res.send("edit video");
 };
 
 export const Delete = (req, res) => {
+  console.log(req.params);
   return res.send("deleted video");
 };
 

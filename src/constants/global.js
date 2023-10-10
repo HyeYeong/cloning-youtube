@@ -9,5 +9,4 @@ export const PATH = {
   EDIT: "/edit",
   DELETE: "/delete",
   UPLOAD: "/upload",
-  ID: "/:id",
 };
