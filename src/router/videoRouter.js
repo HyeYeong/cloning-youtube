@@ -1,10 +1,12 @@
 import express from "express";
 import { PATH } from "../constants/global";
-import { Watch, Edit } from "../controllers/videoController";
+import { See, Edit, Delete, Upload } from "../controllers/videoController";
 
 const videoRouter = express.Router();
 
-videoRouter.get(PATH.WATCH, Watch);
-videoRouter.get(PATH.EDIT, Edit);
+videoRouter.get(PATH.UPLOAD, Upload);
+videoRouter.get(PATH.ID, See);
+videoRouter.get(`${PATH.ID}${PATH.EDIT}`, Edit);
+videoRouter.get(`${PATH.ID}${PATH.DELETE}`, Delete);
 
 export default videoRouter;
