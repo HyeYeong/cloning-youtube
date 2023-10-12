@@ -1,5 +1,6 @@
 export const Trending = (req, res) => {
-  return res.send("home page video");
+  console.log("cwd!!!!! : ", process.cwd());
+  return res.render("./home");
 };
 
 export const Search = (req, res) => {
@@ -7,8 +8,7 @@ export const Search = (req, res) => {
 };
 
 export const See = (req, res) => {
-  console.log(req.params);
-  return res.send("watch video");
+  return res.render("watch");
 };
 
 export const Edit = (req, res) => {

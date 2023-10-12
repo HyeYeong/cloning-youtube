@@ -11,6 +11,8 @@ const app = express();
 //logger함수는 미들웨어를 리턴해준다.
 const logger = morgan("dev");
 app.use(logger);
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
 
 // 글로벌 라우터 사용
 // 글로벌 라우터는 / 이후의 가장 첫 번째 알파벳임
