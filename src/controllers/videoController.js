@@ -1,5 +1,10 @@
+const fakeUserObj = {
+  username: "lee",
+  loggedIn: false,
+};
+
 export const Trending = (req, res) => {
-  return res.render("home", { pageTitle: "home" });
+  return res.render("home", { pageTitle: "home", fakeUser: fakeUserObj });
 };
 
 export const Search = (req, res) => {
