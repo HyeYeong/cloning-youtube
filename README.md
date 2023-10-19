@@ -1,5 +1,8 @@
 # cloning-youtube
 
+### setup
+node, express, views - pug, babel, mvp css
+
 ### url list
 
 / -> home <br/>
