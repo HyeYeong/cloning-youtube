@@ -4,7 +4,12 @@ const fakeUserObj = {
 };
 
 export const Trending = (req, res) => {
-  return res.render("home", { pageTitle: "home", fakeUser: fakeUserObj });
+  const videos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  return res.render("home", {
+    pageTitle: "home",
+    fakeUser: fakeUserObj,
+    videos: videos,
+  });
 };
 
 export const Search = (req, res) => {
