@@ -51,8 +51,18 @@ export const Watch = (req, res) => {
   });
 };
 
-export const Edit = (req, res) => {
-  return res.render("edit", { pageTitle: "edit video" });
+export const GetEdit = (req, res) => {
+  const { id } = req.params;
+  const video = videos[id - 1];
+  return res.render("edit", {
+    pageTitle: `Editing: ${video.title}`,
+    video,
+  });
+};
+
+// 변경사항을 저장해주는 녀석
+export const PostEdit = (req, res) => {
+  return res.end();
 };
 
 export const Delete = (req, res) => {
