@@ -3,37 +3,38 @@ const fakeUserObj = {
   loggedIn: false,
 };
 
+let videos = [
+  {
+    title: "first videos",
+    rating: 2,
+    comments: 5,
+    createdAt: "2 minutes ago",
+    views: 59,
+    id: 1,
+  },
+  {
+    title: "second videos",
+    rating: 5,
+    comments: 2,
+    createdAt: "10 minutes ago",
+    views: 159,
+    id: 2,
+  },
+  {
+    title: "third videos",
+    rating: 5,
+    comments: 4,
+    createdAt: "20 minutes ago",
+    views: 509,
+    id: 3,
+  },
+];
+
 export const Trending = (req, res) => {
-  const videos = [
-    {
-      title: "first videos",
-      rating: 2,
-      comments: 5,
-      createdAt: "2 minutes ago",
-      views: 59,
-      id: 1,
-    },
-    {
-      title: "second videos",
-      rating: 5,
-      comments: 2,
-      createdAt: "10 minutes ago",
-      views: 159,
-      id: 2,
-    },
-    {
-      title: "third videos",
-      rating: 5,
-      comments: 4,
-      createdAt: "20 minutes ago",
-      views: 509,
-      id: 3,
-    },
-  ];
   return res.render("home", {
     pageTitle: "home",
     fakeUser: fakeUserObj,
-    videos: videos,
+    videos,
   });
 };
 
@@ -41,8 +42,13 @@ export const Search = (req, res) => {
   return res.send("search videos");
 };
 
-export const See = (req, res) => {
-  return res.render("watch", { pageTitle: "watch video" });
+export const Watch = (req, res) => {
+  const { id } = req.params;
+  const video = videos[id - 1];
+  return res.render("watch", {
+    pageTitle: `watching ${video.title}`,
+    video,
+  });
 };
 
 export const Edit = (req, res) => {
