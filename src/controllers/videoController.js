@@ -4,7 +4,32 @@ const fakeUserObj = {
 };
 
 export const Trending = (req, res) => {
-  const videos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const videos = [
+    {
+      title: "first videos",
+      rating: 2,
+      comments: 5,
+      createdAt: "2 minutes ago",
+      views: 59,
+      id: 1,
+    },
+    {
+      title: "second videos",
+      rating: 5,
+      comments: 2,
+      createdAt: "10 minutes ago",
+      views: 159,
+      id: 2,
+    },
+    {
+      title: "third videos",
+      rating: 5,
+      comments: 4,
+      createdAt: "20 minutes ago",
+      views: 509,
+      id: 3,
+    },
+  ];
   return res.render("home", {
     pageTitle: "home",
     fakeUser: fakeUserObj,
