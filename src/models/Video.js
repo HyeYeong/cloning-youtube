@@ -28,8 +28,9 @@ const videoSchema = new mongoose.Schema({
   },
 });
 
-videoSchema.pre("save", async function () {
-  this.hashtags = this.hashtags[0]
+// NOTE: 각자의 특별한 static　함수를 만들 수 있다!
+videoSchema.static("formatHashTags", function (hashtags) {
+  return hashtags
     .split(",")
     .map((word) => (word.startsWith("#") ? word : `#${word}`));
 });
