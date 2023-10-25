@@ -30,3 +30,6 @@ url의 파라미터로 이 값이 함께 나오게 됨. /example?title=first+mov
 POST
 는 url상의 파라미터는 보이지 않게 된다.
 프론트 쪽에서 method="post"를 해준다고 끝이 아니고, 서버쪽에서 똑같이 POST로 받는 방법을 작성해줘야 한다.
+
+mongoDB
+mongoose를 통해서, 자바스크립트에서 mongoDB와 상호작용 할 수 있다.

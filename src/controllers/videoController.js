@@ -74,6 +74,22 @@ export const Delete = (req, res) => {
   return res.send("deleted video");
 };
 
-export const Upload = (req, res) => {
-  return res.send("Upload video");
+export const GetUpload = (req, res) => {
+  return res.render("upload", { pageTitle: "upload video" });
+};
+
+export const PostUpload = (req, res) => {
+  // TODO: 이 곳에서 Videos array를 추가할 예정
+  const newId = videos.length + 1;
+  const { title } = req.body;
+  const newVideoObj = {
+    title,
+    rating: 0,
+    comments: 0,
+    createdAt: "just now",
+    views: 0,
+    id: newId,
+  };
+  videos.push(newVideoObj);
+  return res.redirect(`/`);
 };

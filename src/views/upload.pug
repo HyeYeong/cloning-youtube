@@ -1,0 +1,11 @@
+extends base.pug
+
+block head
+  title #{pageTitle} | clonging youtube
+
+block content 
+  h3 hello
+    span(style="display: none") NOTE: 현재의 URL로 데이터를 보낼 수 있다. action='{url}'을 사용하면 그 경로로 데이터를 보낸다.
+    form(method="POST")
+      input(name="title", placeholder="video title", type="text", required)
+      input(type="submit" value="save")

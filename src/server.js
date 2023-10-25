@@ -24,5 +24,5 @@ app.use(PATH.USERS, userRouter);
 app.use(PATH.VIDEOS, videoRouter);
 
 const handleListening = () =>
-  console.log(`server listening on port http://localhost:${PORT} -!`);
+  console.log(`server listening on port http://localhost:${PORT} 🚀`);
 app.listen(PORT, handleListening);

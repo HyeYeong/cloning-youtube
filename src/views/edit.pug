@@ -7,4 +7,5 @@ block content
   h4 Change Title of Video
   form(method="POST")
     input(name="title", placeholder="New Title", value=video.title, required)
+    span(style="display: none") NOTE: input에 name값이 없으면 request.body에서 볼 수도, 사용할 수도 없다!
     input(value="Save", type="submit")
