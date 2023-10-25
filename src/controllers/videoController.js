@@ -24,27 +24,30 @@ export const Search = (req, res) => {
   return res.send("search videos");
 };
 
-export const Watch = (req, res) => {
+export const Watch = async (req, res) => {
   const { id } = req.params;
+  const video = await Video.findById(id);
   return res.render("watch", {
-    // pageTitle: `watching ${video.title}`,
+    pageTitle: `watching ${video.title}`,
     video,
   });
 };
 
-export const GetEdit = (req, res) => {
+export const GetEdit = async (req, res) => {
   const { id } = req.params;
+  const video = await Video.findById(id);
   return res.render("edit", {
-    // pageTitle: `Editing: ${video.title}`,
+    pageTitle: `Editing: ${video.title}`,
     video,
   });
 };
 
 // 변경사항을 저장해주는 녀석
-export const PostEdit = (req, res) => {
+export const PostEdit = async (req, res) => {
   const { id } = req.params;
+  const video = await Video.findById(id);
   const { title } = req.body;
-  // videos[id - 1].title = title;
+  video[id].title = title;
   return res.redirect(`/videos/${id}`);
 };
 

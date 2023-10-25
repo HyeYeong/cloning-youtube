@@ -3,6 +3,9 @@ extends base.pug
 block head
   title #{pageTitle} | clonging youtube
 
-block content 
-  h3 #{video.views} #{video.views === 1 ? 'view' : 'views'}
-  a(href=`${video.id}/edit`) Edit video &rarr;
+block content
+  div 
+    p=video.description
+    small=video.createdAt
+  p 
+    a(href=`${video.id}/edit`) Edit video &rarr;
