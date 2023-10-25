@@ -8,5 +8,7 @@ block content
     p=video.description
     p=video.hashtags
     small=video.createdAt
-  p 
+  div
     a(href=`${video.id}/edit`) Edit video &rarr;
+    br
+    a(href=`${video.id}/delete`) Delete video &rarr;

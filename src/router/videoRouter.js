@@ -4,7 +4,7 @@ import {
   Watch,
   GetEdit,
   PostEdit,
-  Delete,
+  DeleteVideo,
   GetUpload,
   PostUpload,
 } from "../controllers/videoController";
@@ -20,6 +20,6 @@ videoRouter.route("/upload").get(GetUpload).post(PostUpload);
 videoRouter.get(`/:id(${reg})`, Watch);
 videoRouter.route(`/:id(${reg})${PATH.EDIT}`).get(GetEdit).post(PostEdit);
 // get, post는 같은 url를 사용하기 때문에 줄여서 사용할 수 있다
-videoRouter.get(`/:id(${reg})${PATH.DELETE}`, Delete);
+videoRouter.get(`/:id(${reg})${PATH.DELETE}`, DeleteVideo);
 
 export default videoRouter;
