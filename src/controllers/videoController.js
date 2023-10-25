@@ -60,21 +60,17 @@ export const PostUpload = async (req, res) => {
   // TODO: 이 곳에서 Videos array를 추가할 예정
   // const newId = videos.length + 1;
   const { title, description, hashtags } = req.body;
-
-  const video = new Video({
-    title,
-    description,
-    createdAt: Date.now(),
-    hashtags: hashtags.split(",").map((word) => `#${word}`),
-    meta: {
-      views: 0,
-      rating: 0,
-    },
-  });
-  // NOTE: 이 상태에서, 프론트에는 데이터가 저장이 되지만, 아직 데이터베이스에 데이터를 저장해주지는 않았음
-  console.log(video);
-
-  // NOTE: save함수에 마우스 커서를 올려보면, save는 promise를 이용한다, 즉 세이브하는데에 시간이 걸린다는 뜻이므로, await를 적어서 기다려주면 좋다.
-  await video.save();
-  return res.redirect(`/`);
+  try {
+    await Video.create({
+      title,
+      description,
+      hashtags: hashtags.split(",").map((word) => `#${word}`),
+    });
+    return res.redirect(`/`);
+  } catch (error) {
+    return res.render("upload", {
+      pageTitle: "upload video",
+      errorMessage: error._message,
+    });
+  }
 };
