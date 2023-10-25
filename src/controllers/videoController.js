@@ -42,17 +42,20 @@ export const GetEdit = async (req, res) => {
   });
 };
 
-// 변경사항을 저장해주는 녀석
+// NOTE: 변경사항을 저장해주는 녀석
 export const PostEdit = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id);
+  const video = await Video.exists({ _id: id });
+  // NOTE: mongoDb에서 리턴해주는 _id 의 속성과, req.params 안에 있는 id가 같은 지 체크해줌. exists는 필터 함수를 사용해서 true or false
   const { title, description, hashtags } = req.body;
   if (!video) res.render("404", { pageTitle: "Video not found" });
-  video.title = title;
-  video.description = description;
-  video.hashtags = hashtags
-    .split(",")
-    .map((word) => (word.startsWith("#") ? word : `#${word}`));
+  await Video.findByIdAndUpdate(id, {
+    title,
+    description,
+    hashtags: hashtags
+      .split(",")
+      .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+  });
   await video.save();
   return res.redirect(`/videos/${id}`);
 };
@@ -66,14 +69,14 @@ export const GetUpload = (req, res) => {
 };
 
 export const PostUpload = async (req, res) => {
-  // TODO: 이 곳에서 Videos array를 추가할 예정
-  // const newId = videos.length + 1;
   const { title, description, hashtags } = req.body;
   try {
     await Video.create({
       title,
       description,
-      hashtags: hashtags.split(",").map((word) => `#${word}`),
+      hashtags: hashtags
+        .split(",")
+        .map((word) => (word.startsWith("#") ? word : `#${word}`)),
     });
     return res.redirect(`/`);
   } catch (error) {
