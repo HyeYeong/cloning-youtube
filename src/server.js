@@ -1,7 +1,6 @@
-import "./db"; // 이 파일을 보는 순간, 내 서버가 mongoDB에 연결될거임
 import express from "express";
 import morgan from "morgan";
-import { PORT, PATH } from "./constants/global";
+import { PATH } from "./constants/global";
 import globalRouter from "./router/globalRouter";
 import userRouter from "./router/userRouter";
 import videoRouter from "./router/videoRouter";
@@ -24,6 +23,4 @@ app.use("/", globalRouter);
 app.use(PATH.USERS, userRouter);
 app.use(PATH.VIDEOS, videoRouter);
 
-const handleListening = () =>
-  console.log(`✅ server listening on port http://localhost:${PORT} 🚀`);
-app.listen(PORT, handleListening);
+export default app;
