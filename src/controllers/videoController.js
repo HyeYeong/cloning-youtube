@@ -63,14 +63,12 @@ export const GetEdit = (req, res) => {
 // 변경사항을 저장해주는 녀석
 export const PostEdit = (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
   const { title } = req.body;
   videos[id - 1].title = title;
   return res.redirect(`/videos/${id}`);
 };
 
 export const Delete = (req, res) => {
-  console.log(req.params);
   return res.send("deleted video");
 };
 
