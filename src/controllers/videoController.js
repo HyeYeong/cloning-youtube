@@ -46,17 +46,15 @@ export const GetEdit = async (req, res) => {
 export const PostEdit = async (req, res) => {
   const { id } = req.params;
   const video = await Video.exists({ _id: id });
-  // NOTE: mongoDb에서 리턴해주는 _id 의 속성과, req.params 안에 있는 id가 같은 지 체크해줌. exists는 필터 함수를 사용해서 true or false
+  // NOTE: mongoDb에서 리턴해주는 _id 의 속성과, req.params 안에 있는 id가 같은 지 체크해줌. exists는 필터 함수를 사용해서 true or false를 반환해줌
   const { title, description, hashtags } = req.body;
   if (!video) res.render("404", { pageTitle: "Video not found" });
   await Video.findByIdAndUpdate(id, {
     title,
     description,
-    hashtags: hashtags
-      .split(",")
-      .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+    hashtags,
   });
-  await video.save();
+  // await video.save();
   return res.redirect(`/videos/${id}`);
 };
 
@@ -74,9 +72,7 @@ export const PostUpload = async (req, res) => {
     await Video.create({
       title,
       description,
-      hashtags: hashtags
-        .split(",")
-        .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+      hashtags,
     });
     return res.redirect(`/`);
   } catch (error) {
