@@ -6,6 +6,7 @@ block head
 block content
   div 
     p=video.description
+    p=video.hashtags
     small=video.createdAt
   p 
     a(href=`${video.id}/edit`) Edit video &rarr;

@@ -6,6 +6,8 @@ block head
 block content
   h4 Change Title of Video
   form(method="POST")
-    input(name="title", placeholder="New Title", value=video.title, required)
+    input(name="title", placeholder="New Title", value=video.title,  minlength=20, maxlength=80, required)
     span(style="display: none") NOTE: input에 name값이 없으면 request.body에서 볼 수도, 사용할 수도 없다!
+    input(name="description", placeholder="New description", value=video.description, minlength=20, maxlength=140, required)
+    input(name="hashtags", placeholder="New hashtags, seperated by comma", value=video.hashtags.join(), required)
     input(value="Save", type="submit")
