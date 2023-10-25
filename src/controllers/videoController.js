@@ -4,45 +4,19 @@ const fakeUserObj = {
   loggedIn: false,
 };
 
-let videos = [
-  {
-    title: "first videos",
-    rating: 2,
-    comments: 5,
-    createdAt: "2 minutes ago",
-    views: 59,
-    id: 1,
-  },
-  {
-    title: "second videos",
-    rating: 5,
-    comments: 2,
-    createdAt: "10 minutes ago",
-    views: 159,
-    id: 2,
-  },
-  {
-    title: "third videos",
-    rating: 5,
-    comments: 4,
-    createdAt: "20 minutes ago",
-    views: 509,
-    id: 3,
-  },
-];
+export const Home = async (req, res) => {
+  // NOTE: promise에서는 에러의 표시를 위해서, try catch문을 사용한다.
+  try {
+    const videos = await Video.find({});
 
-export const Home = (req, res) => {
-  // NOTE: 데이터가 전송되는 것을 기다려야 함. 데이터가 완전히 전송될 때까지 꼭 기다려야함. 그 데이터가 javascript 파일 속에 없기 때문에
-  Video.find({}, (error, videos) => {
-    console.log("error: ", error);
-    console.log("video: ", videos);
-    // NOTE: callback을 사용하면 아무것도 리턴되지 않아야 함. 그래서 콜백 함수 안에 렌더를 넣어주면, 브라우저는 렌더링을 기다려준다.
     return res.render("home", {
       pageTitle: "home",
       fakeUser: fakeUserObj,
-      videos: [],
+      videos,
     });
-  });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const Search = (req, res) => {
