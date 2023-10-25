@@ -7,7 +7,7 @@ const fakeUserObj = {
 export const Home = async (req, res) => {
   // NOTE: promise에서는 에러의 표시를 위해서, try catch문을 사용한다.
   try {
-    const videos = await Video.find({});
+    const videos = await Video.find({}).sort({ createdAt: "desc" });
     return res.render("home", {
       pageTitle: "home",
       fakeUser: fakeUserObj,
@@ -18,8 +18,23 @@ export const Home = async (req, res) => {
   }
 };
 
-export const Search = (req, res) => {
-  return res.send("search videos");
+export const Search = async (req, res) => {
+  const { keyword } = req.query;
+  let videos = [];
+  if (keyword) {
+    videos = await Video.find({
+      title: {
+        $regex: new RegExp(keyword, "i"),
+        // ^${keyword} -> 이렇게 쓰면 키워드로 시작하는 검색어를 찾음
+        // ${keyword}$ -> 이렇게 쓰면 키워드로 끝나는 검색어를 찾음
+      },
+    });
+  }
+  return res.render("search", {
+    pageTitle: "search videos",
+    videos,
+    keyword,
+  });
 };
 
 export const Watch = async (req, res) => {

@@ -1,0 +1,16 @@
+extends base.pug
+include mixins/video
+
+block head 
+  title #{pageTitle} | clonging youtube
+
+block content
+  form(method="GET")
+    input(type="text", placeholder="Search by title", value="", name="keyword")
+    input(type="submit", value="Search now")
+
+  each video in videos
+    +video(video)
+
+  if keyword && !videos.length
+    p="검색 결과가 없습니다."
