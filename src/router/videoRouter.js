@@ -17,8 +17,8 @@ videoRouter.get(PATH.UPLOAD, Upload);
 // express는 위에서 아래로 읽기 때문에 일어나는 현상이다.
 // id 라는 글자는 없어도 되지만, 파라미터로 이용하기 위해서 그냥 남겨둠
 videoRouter.get("/:id(\\d+)", Watch);
-videoRouter.get(`/:id(\\d+)${PATH.EDIT}`, GetEdit);
-videoRouter.post(`/:id(\\d+)${PATH.EDIT}`, PostEdit);
+videoRouter.route(`/:id(\\d+)${PATH.EDIT}`).get(GetEdit).post(PostEdit);
+// get, post는 같은 url를 사용하기 때문에 줄여서 사용할 수 있다
 videoRouter.get(`/:id(\\d+)${PATH.DELETE}`, Delete);
 
 export default videoRouter;
