@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { PATH } from "./constants/global";
-import globalRouter from "./router/globalRouter";
+import rootRouter from "./router/rootRouter";
 import userRouter from "./router/userRouter";
 import videoRouter from "./router/videoRouter";
 
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 글로벌 라우터 사용
 // 글로벌 라우터는 / 이후의 가장 첫 번째 알파벳임
-app.use("/", globalRouter);
+app.use("/", rootRouter);
 app.use(PATH.USERS, userRouter);
 app.use(PATH.VIDEOS, videoRouter);
 

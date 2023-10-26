@@ -23,4 +23,9 @@ node, express, views - pug, babel, mvp css
 
 ### mongoDB
 
-start -> mongosh
+start -> mongosh<br/>
+<br/>
+brew services run mongodb-community<br/>
+brew services list<br/>
+<br/>
+데이터베이스명~~started -> 켜진것임
