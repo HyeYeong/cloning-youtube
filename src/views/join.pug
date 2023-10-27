@@ -4,20 +4,20 @@ block head
   title #{pageTitle} | clonging youtube
 
 block content
-  form(method="POST", action="confirm")
+  form(method="POST")
     span='Name'
-    input(type="text", name="name", placeholder="kim tae-hyeong" value="", required)
+    input(type="text", name="name", placeholder="kim tae-hyeong", value="", required)
 
     span='Email'
-    input(type="email", name="email", placeholder="thk@mail.com" value="", required)
+    input(type="email", name="email", placeholder="thk@mail.com", value="", required)
 
     span='User Name'
-    input(type="text", name="username", placeholder="thk" value="", required)
+    input(type="text", name="username", placeholder="thk", value="", required)
 
     span='Password'
     input(type="password", name="password", value="", required)
 
     span='Location'
-    input(type="text", name="location", placeholder="seoul" value="")
+    input(type="text", name="location", placeholder="seoul")
     
     input(type="submit", value="Join")
