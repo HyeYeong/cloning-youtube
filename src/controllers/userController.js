@@ -4,11 +4,12 @@ export const GetJoin = (req, res) => {
   });
 };
 
-export const PostJoin = (req, res) => {};
-
-export const Login = (req, res) => {
-  return res.send("user login");
+export const PostJoin = (req, res) => {
+  console.log(req.body);
+  return res.end();
 };
+
+export const Login = (req, res) => {};
 
 export const Logout = (req, res) => {
   return res.send("user logout!");
