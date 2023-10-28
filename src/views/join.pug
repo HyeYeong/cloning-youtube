@@ -4,6 +4,8 @@ block head
   title #{pageTitle} | clonging youtube
 
 block content
+  if errorMsg
+    p(style="color: red")=errorMsg
   form(method="POST")
     span='Name'
     input(type="text", name="name", placeholder="kim tae-hyeong", value="", required)
@@ -16,6 +18,9 @@ block content
 
     span='Password'
     input(type="password", name="password", value="", required)
+
+    span='Conform password'
+    input(type="password", name="password2", value="", required)
 
     span='Location'
     input(type="text", name="location", placeholder="seoul")
