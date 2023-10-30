@@ -4,11 +4,18 @@ block head
   title #{pageTitle} | clonging youtube
 
 block content
-  form(method="GET")
+  if errorMsg
+    p(style="color: red")=errorMsg
+  form(method="POST")
     span='ID'
-    input(type="email", name="email", placeholder="이메일을 입력해주세요", value="", required)
+    input(type="username", name="username", placeholder="아이디를 입력해주세요", value="", required)
 
     span='Password'
     input(type="password", name="password", value="", required)
 
     input(type="submit", value="Login")
+
+  hr
+  div 
+    span Don't have an account? &nbsp;
+    a(href="/join") Create one now&rarr;
