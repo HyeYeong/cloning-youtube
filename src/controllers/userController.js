@@ -1,4 +1,6 @@
 import User from "../models/User";
+import bcrypt from "bcrypt";
+
 export const GetJoin = (req, res) => {
   return res.render("join", {
     pageTitle: "create account",
@@ -22,18 +24,51 @@ export const PostJoin = async (req, res) => {
     });
   }
 
-  await User.create({
-    name,
-    email,
-    password,
-    username,
-    location,
-  });
-  return res.redirect("/login");
+  try {
+    await User.create({
+      name,
+      email,
+      password,
+      username,
+      location,
+    });
+    return res.redirect("/login");
+  } catch (error) {
+    return res.statue(400).render("join", {
+      pageTitle: "join",
+      errorMessage: error._message,
+    });
+  }
 };
 
-export const Login = (req, res) => {
+export const GetLogin = (req, res) => {
   return res.render("login", { pageTitle: "please, login" });
+};
+
+export const PostLogin = async (req, res) => {
+  const PAGE_TITLE = "login";
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+
+  if (!user) {
+    return res.status(400).render("login", {
+      pageTitle: PAGE_TITLE,
+      errorMsg: "아이디가 존재하지 않습니다.",
+    });
+  } else {
+    const userPassword = user.password;
+    const isCheckedPassword = await bcrypt.compare(password, userPassword);
+
+    if (!isCheckedPassword) {
+      return res.status(400).render("login", {
+        pageTitle: PAGE_TITLE,
+        errorMsg: "패스워드가 일치하지 않습니다.",
+      });
+    }
+
+    console.log(`hello, ${username}`);
+    return res.redirect("/");
+  }
 };
 
 export const Logout = (req, res) => {
