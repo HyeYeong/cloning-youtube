@@ -9,14 +9,14 @@ export const PostJoin = async (req, res) => {
   const { name, email, password, password2, username, location } = req.body;
   const orExists = await User.exists({ $or: [{ username }, { email }] });
   if (password !== password2) {
-    return res.render("join", {
+    return res.status(400).render("join", {
       pageTitle: "join",
       errorMsg: "패스워드가 서로 일치하지 않습니다.",
     });
   }
 
   if (orExists) {
-    return res.render("join", {
+    return res.status(400).render("join", {
       pageTitle: "join",
       errorMsg: "이미 사용중인 이름 혹은 이메일입니다.",
     });

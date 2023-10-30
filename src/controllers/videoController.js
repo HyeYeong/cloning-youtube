@@ -63,7 +63,7 @@ export const PostEdit = async (req, res) => {
   const video = await Video.exists({ _id: id });
   // NOTE: mongoDb에서 리턴해주는 _id 의 속성과, req.params 안에 있는 id가 같은 지 체크해줌. exists는 필터 함수를 사용해서 true or false를 반환해줌
   const { title, description, hashtags } = req.body;
-  if (!video) res.render("404", { pageTitle: "Video not found" });
+  if (!video) res.status(404).render("404", { pageTitle: "Video not found" });
   await Video.findByIdAndUpdate(id, {
     title,
     description,
@@ -92,7 +92,7 @@ export const PostUpload = async (req, res) => {
     });
     return res.redirect(`/`);
   } catch (error) {
-    return res.render("upload", {
+    return res.statue(400).render("upload", {
       pageTitle: "upload video",
       errorMessage: error._message,
     });
